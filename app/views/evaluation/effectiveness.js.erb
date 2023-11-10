@@ -2,4 +2,45 @@ document.getElementById("LoadingPage").style.display = "flex";
 
 setTimeout(function () {
     document.getElementById("LoadingPage").style.display = "none";
+
+    document.querySelector("#first_level_results").innerHTML = `
+    <% 0..5.times do |i|  %>
+        <tr>
+        <td>G<%= i + 1 %></td>
+        <td><%= @g[i] %></td>
+        <td><%= @x[i] %></td>
+        <td><%= @t[i] %></td>
+        <td><%= @alpha[i] %></td>
+        </tr>
+    <% end %>`;
+
+    document.querySelector("#second_level_results").innerHTML = `
+    <% 0..5.times do |i|  %>
+        <tr>
+        <td>G<%= i + 1 %></td>
+        <td><%= @n[i].map{|v| v.keys.map{|key| "U#{i + 1}#{key}"}}.join(" або ") %></td>
+        <td><%= @n[i].map{|v| v.keys.map{|key| "U#{i + 1}#{key} = #{v[key]}"}}.join(" або ") %></td>
+        <td><%= "U#{i + 1}#{@u[i]}" %></td>
+        </tr>
+    <% end %>`;
+
+    document.querySelector("#third_level_results").innerHTML = `
+    <% 0..5.times do |i|  %>
+        <tr>
+        <td>G<%= i + 1 %></td>
+        <td><%= @max[i] %></td>
+        </tr>
+    <% end %>`;
+
+    document.querySelector("#final_level_results").innerHTML = `
+                      <div class="col-6 mx-auto text-center">
+                        <h5>Агрегована оцінка</h5>
+                        <b><%= @m %></b>
+                      </div>
+                      <div class="col-6 mx-auto text-center">
+                        <h5>Лінгвістична оцінка</h5>
+                        <b><%= @linguistic %></b>
+                      </div>`;
+
+    document.querySelector("#results").style.display = "block";
 }, 3000);

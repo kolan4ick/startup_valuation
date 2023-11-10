@@ -12,21 +12,21 @@ class EvaluationController < ApplicationController
 
   def effectiveness
     # Data from the form
-    g = params[:evaluation][:g].map(&:to_f)
+    @g = params[:evaluation][:g].map(&:to_f)
     a = params[:evaluation][:a].map(&:to_f)
     b = params[:evaluation][:b].map(&:to_f)
-    t = params[:evaluation][:t].map(&:to_f)
-    u = params[:evaluation][:u].map(&:to_i)
+    @t = params[:evaluation][:t].map(&:to_f)
+    @u = params[:evaluation][:u].map(&:to_i)
     p = params[:evaluation][:p].map(&:to_f)
 
-    @result = EffectivenessEvaluator.new(g: g, a: a, b: b, t: t, u: u, p: p).evaluate
+    @result = EffectivenessEvaluator.new(g: @g, a: a, b: b, t: @t, u: @u, p: p).evaluate
 
     # { x: x, alpha: alpha, n: n, max: max, m: m, linguistic: linguistic }
-    @x = @result[:x]
-    @alpha = @result[:alpha]
-    @n = @result[:n]
-    @max = @result[:max]
-    @m = @result[:m]
+    @x = @result[:x].map { | i | i.round(2) }
+    @alpha = @result[:alpha].map { | i | i.round(2) }
+    @n = @result[:n].map { | hash | hash.map { | key, value | { key => value.round(2) } } }
+    @max = @result[:max].map { | i | i.round(3) }
+    @m = @result[:m].round(4)
     @linguistic = @result[:linguistic]
 
     respond_to do | format |
