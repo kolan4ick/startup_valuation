@@ -1,34 +1,51 @@
-<%# effectiveness_evaluation.html.erb in app/views/CONTROLLER_NAME/directory %>
-
-<h2>Effectiveness Evaluation</h2>
-
-<%= form_with(url: evaluation_effectiveness_url, method: :get, local: false) do %>
-  <table>
-    <tr>
-      <th>G</th>
-      <th>A</th>
-      <th>B</th>
-      <th>T</th>
-      <th>U</th>
-      <th>P</th>
-    </tr>
-
-    <% 5.times do | i | %>
-      <tr>
-        <td><%= text_field_tag "evaluation[g][]", @data[0][i] %></td>
-        <td><%= text_field_tag 'evaluation[a][]', @data[1][i] %></td>
-        <td><%= text_field_tag 'evaluation[b][]', @data[2][i] %></td>
-        <td><%= text_field_tag 'evaluation[t][]', @data[3][i] %></td>
-        <td><%= text_field_tag 'evaluation[u][]', @data[4][i] %></td>
-        <td><%= text_field_tag 'evaluation[p][]', @data[5][i] %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= submit_tag "Submit" %>
-<% end %>
-
-<div>
-  <h3>Result: </h3>
-  <p><%= @result %></p>
+<div class="container">
+  <h1>Оцінка стартапу</h1>
+  <div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Оцінка ефективності</a></li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Оцінка ризику</a></li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Оцінка команд</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" role="tabpanel" id="tab-1">
+        <%= form_with(url: evaluation_effectiveness_url, method: :get, local: false) do %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>G</th>
+                <th>G</th>
+                <th>G</th>
+                <th>G</th>
+                <th>G</th>
+                <th>G</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% 5.times do | i | %>
+                <tr>
+                  <td><%= text_field_tag "evaluation[g][]", @data[0][i], class: "form-control", type: :number %></td>
+                  <td><%= text_field_tag "evaluation[a][]", @data[1][i], class: "form-control", type: :number %></td>
+                  <td><%= text_field_tag "evaluation[b][]", @data[2][i], class: "form-control", type: :number %></td>
+                  <td><%= text_field_tag "evaluation[t][]", @data[3][i], class: "form-control", type: :number %></td>
+                  <td><%= text_field_tag "evaluation[u][]", @data[4][i], class: "form-control", type: :number %></td>
+                  <td><%= text_field_tag "evaluation[p][]", @data[5][i], class: "form-control", type: :number %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="tab-2">
+        <p>In progress</p>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="tab-3">
+        <p>In progress</p>
+      </div>
+    </div>
+  </div>
 </div>
