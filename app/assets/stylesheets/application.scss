@@ -13,6 +13,25 @@
  *= require_tree .
  *= require_self
  */
-@import "darkly/variables";
+//@import "darkly/variables";
 @import "bootstrap/scss/bootstrap";
-@import "darkly/bootswatch";
+//@import "darkly/bootswatch";
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+#LoadingPage {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
