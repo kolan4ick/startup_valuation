@@ -1,0 +1,34 @@
+<%# effectiveness_evaluation.html.erb in app/views/CONTROLLER_NAME/directory %>
+
+<h2>Effectiveness Evaluation</h2>
+
+<%= form_with(url: evaluation_effectiveness_url, method: :get, local: false) do %>
+  <table>
+    <tr>
+      <th>G</th>
+      <th>A</th>
+      <th>B</th>
+      <th>T</th>
+      <th>U</th>
+      <th>P</th>
+    </tr>
+
+    <% 5.times do | i | %>
+      <tr>
+        <td><%= text_field_tag "evaluation[g][]", @data[0][i] %></td>
+        <td><%= text_field_tag 'evaluation[a][]', @data[1][i] %></td>
+        <td><%= text_field_tag 'evaluation[b][]', @data[2][i] %></td>
+        <td><%= text_field_tag 'evaluation[t][]', @data[3][i] %></td>
+        <td><%= text_field_tag 'evaluation[u][]', @data[4][i] %></td>
+        <td><%= text_field_tag 'evaluation[p][]', @data[5][i] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<div>
+  <h3>Result: </h3>
+  <p><%= @result %></p>
+</div>
