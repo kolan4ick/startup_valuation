@@ -1,0 +1,182 @@
+<%= form_with(url: risk_evaluation_url, method: :get, local: false) do %>
+  <div class="table-responsive pt-3">
+    <div class="row">
+      <div class="col-3">
+        <h5 class="text-center">Операційні ризики</h5>
+        <% 9.times do | i | %>
+          <div class="row">
+            <div class="col-2">
+              <p>K<%= i %></p>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k1][#{i}][]", @data_2[0][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k1][#{i}][]", @data_2[0][i][1], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <h5 class="text-center">Інвестиційні ризики</h5>
+        <% 5.times do | i | %>
+          <div class="row">
+            <div class="col-2">
+              <p>K<%= i %></p>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k2][#{i}][]", @data_2[1][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k2][#{i}][]", @data_2[1][i][1], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <h5 class="text-center">Фінансові ризики</h5>
+        <% 5.times do | i | %>
+          <div class="row">
+            <div class="col-2">
+              <p>K<%= i %></p>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k3][#{i}][]", @data_2[2][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-4">
+              <%= text_field_tag "evaluation[k3][#{i}][]", @data_2[2][i][1], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <h5 class="text-center">Ризики інноваційної діяльності</h5>
+        <% 5.times do | i | %>
+          <div class="row">
+            <div class="col-2">
+              <p>K<%= i %></p>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k4][#{i}][]", @data_2[3][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-5">
+              <%= text_field_tag "evaluation[k4][#{i}][]", @data_2[3][i][1], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto text-center mt-3">
+    <input class="btn btn-primary" style="width: 33%" type="submit"/>
+  </div>
+<% end %>
+<div id="risk_results" class="pt-3" style="display: none">
+  <div>
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно першого кроку</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table id="ipi-table" class="table table-striped table tablesorter">
+                <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">№</th>
+                  <th class="text-center">Критерій</th>
+                  <th class="text-center">Значення лінгвістичних змінних</th>
+                  <th class="text-center filter-false sorter-false">Результуюча терм оцінка</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" id="first_level_risk_results"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно другого кроку</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table id="ipi-table" class="table table-striped table tablesorter">
+                <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">№</th>
+                  <th class="text-center">Критерій</th>
+                  <th class="text-center">Значення лінгвістичних змінних</th>
+                  <th class="text-center filter-false sorter-false">Результуюча терм оцінка</th>
+                  <th class="text-center filter-false sorter-false">Агрегована оцінка</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" id="second_level_risk_results"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно третього кроку</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table id="ipi-table" class="table table-striped table tablesorter">
+                <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">X</th>
+                  <th class="text-center">Z</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" id="third_level_risk_results"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Агрегована оцінка ризику по всіх групах критеріїв</p>
+          </div>
+        </div>
+        <h4 class="text-center" id="fourth_level_risk_results"></h4>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3 pb-5">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Рівень безпеки фінансування проєкту</p>
+          </div>
+        </div>
+        <h5 id="final_level_risk_results" class="text-center"></h5>
+      </div>
+    </div>
+  </div>
+</div>

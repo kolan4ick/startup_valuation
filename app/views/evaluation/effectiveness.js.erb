@@ -3,7 +3,7 @@ document.getElementById("LoadingPage").style.display = "flex";
 setTimeout(function () {
     document.getElementById("LoadingPage").style.display = "none";
 
-    document.querySelector("#first_level_results").innerHTML = `
+    document.querySelector("#first_level_effectiveness_results").innerHTML = `
     <% 0..5.times do |i|  %>
         <tr>
         <td>G<%= i + 1 %></td>
@@ -14,7 +14,7 @@ setTimeout(function () {
         </tr>
     <% end %>`;
 
-    document.querySelector("#second_level_results").innerHTML = `
+    document.querySelector("#second_level_effectiveness_results").innerHTML = `
     <% 0..5.times do |i|  %>
         <tr>
         <td>G<%= i + 1 %></td>
@@ -24,7 +24,7 @@ setTimeout(function () {
         </tr>
     <% end %>`;
 
-    document.querySelector("#third_level_results").innerHTML = `
+    document.querySelector("#third_level_effectiveness_results").innerHTML = `
     <% 0..5.times do |i|  %>
         <tr>
         <td>G<%= i + 1 %></td>
@@ -32,7 +32,7 @@ setTimeout(function () {
         </tr>
     <% end %>`;
 
-    document.querySelector("#final_level_results").innerHTML = `
+    document.querySelector("#final_level_effectiveness_results").innerHTML = `
                       <div class="col-6 mx-auto text-center">
                         <h5>Агрегована оцінка</h5>
                         <b><%= @m %></b>
@@ -42,5 +42,5 @@ setTimeout(function () {
                         <b><%= @linguistic %></b>
                       </div>`;
 
-    document.querySelector("#results").style.display = "block";
+    document.querySelector("#effectiveness_results").style.display = "block";
 }, 3000);

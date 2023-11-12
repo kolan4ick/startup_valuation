@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class EffectivenessEvaluator
+class EffectivenessEvaluator < Evaluator
 
   attr_accessor :g, :a, :b, :t, :u, :p
 
