@@ -21,9 +21,9 @@ class RiskEvaluator < Evaluator
       @linguistic = []
       @authenticity = []
 
-      k.keys.each do | key |
-        @linguistic << k[key][0] # linguistic assessment of the risk
-        @authenticity << k[key][1].to_f # authenticity of the risk
+      k.each do | _, value |
+        @linguistic << value[0]
+        @authenticity << value[1].to_f
       end
 
       @aggregated_assessment = aggregate_assessment
@@ -74,7 +74,7 @@ class RiskEvaluator < Evaluator
             Math.sqrt(agg_rel_assess / 2) * (b - a) + a
           elsif 0.5 < agg_rel_assess && agg_rel_assess <= 1
             b - Math.sqrt((1 - agg_rel_assess) / 2) * (b - a)
-          end
+          end || 0
 
       {
         x => x / 100.0

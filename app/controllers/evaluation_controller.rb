@@ -71,10 +71,10 @@ class EvaluationController < ApplicationController
 
   def risk
     # Data from the form
-    k1 = params[:evaluation][:k1]
-    k2 = params[:evaluation][:k2]
-    k3 = params[:evaluation][:k3]
-    k4 = params[:evaluation][:k4]
+    k1 = params[:evaluation][:k1].to_unsafe_h
+    k2 = params[:evaluation][:k2].to_unsafe_h
+    k3 = params[:evaluation][:k3].to_unsafe_h
+    k4 = params[:evaluation][:k4].to_unsafe_h
 
     @result = RiskEvaluator.new(k1: k1, k2: k2, k3: k3, k4: k4).evaluate
 
