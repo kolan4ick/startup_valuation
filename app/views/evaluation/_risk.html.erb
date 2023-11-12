@@ -67,17 +67,17 @@
       </div>
     </div>
   </div>
-  <div class="mx-auto text-center">
+  <div class="mx-auto text-center mt-3">
     <input class="btn btn-primary" style="width: 33%" type="submit"/>
   </div>
 <% end %>
-<div id="results" class="pt-3" style="display: none">
-  <div id="first_level">
+<div id="risk_results" class="pt-3" style="display: none">
+  <div>
     <div class="container-fluid">
       <div class="card">
         <div class="card-header py-3">
           <div class="text-start" style="margin: 0px;padding: 5px 15px;">
-            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно першого рівня</p>
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно першого кроку</p>
           </div>
         </div>
         <div class="row">
@@ -86,14 +86,13 @@
               <table id="ipi-table" class="table table-striped table tablesorter">
                 <thead class="thead-dark">
                 <tr>
-                  <th class="text-center">Групи критеріїв</th>
-                  <th class="text-center">Бальна оцінка</th>
-                  <th class="text-center">Функція належності бальної оцінки</th>
-                  <th class="text-center filter-false sorter-false">"Бажані значення" Т</th>
-                  <th class="text-center filter-false sorter-false">Функція належності "бажаних значень" α</th>
+                  <th class="text-center">№</th>
+                  <th class="text-center">Критерій</th>
+                  <th class="text-center">Значення лінгвістичних змінних</th>
+                  <th class="text-center filter-false sorter-false">Результуюча терм оцінка</th>
                 </tr>
                 </thead>
-                <tbody class="text-center" id="first_level_results"></tbody>
+                <tbody class="text-center" id="first_level_risk_results"></tbody>
               </table>
             </div>
           </div>
@@ -101,12 +100,12 @@
       </div>
     </div>
   </div>
-  <div class="pt-3" id="second_level">
+  <div class="pt-3">
     <div class="container-fluid">
       <div class="card">
         <div class="card-header py-3">
           <div class="text-start" style="margin: 0px;padding: 5px 15px;">
-            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно другого рівня</p>
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно другого кроку</p>
           </div>
         </div>
         <div class="row">
@@ -115,13 +114,14 @@
               <table id="ipi-table" class="table table-striped table tablesorter">
                 <thead class="thead-dark">
                 <tr>
-                  <th class="text-center">Групи критеріїв</th>
-                  <th class="text-center">Отриманий терм</th>
-                  <th class="text-center">Достовірність терму (значення функції належності)</th>
-                  <th class="text-center filter-false sorter-false">Побажання значення терму ОПР</th>
+                  <th class="text-center">№</th>
+                  <th class="text-center">Критерій</th>
+                  <th class="text-center">Значення лінгвістичних змінних</th>
+                  <th class="text-center filter-false sorter-false">Результуюча терм оцінка</th>
+                  <th class="text-center filter-false sorter-false">Агрегована оцінка</th>
                 </tr>
                 </thead>
-                <tbody class="text-center" id="second_level_results"></tbody>
+                <tbody class="text-center" id="second_level_risk_results"></tbody>
               </table>
             </div>
           </div>
@@ -129,12 +129,12 @@
       </div>
     </div>
   </div>
-  <div class="pt-3" id="third_level">
+  <div class="pt-3">
     <div class="container-fluid">
       <div class="card">
         <div class="card-header py-3">
           <div class="text-start" style="margin: 0px;padding: 5px 15px;">
-            <p class="text-primary m-0 fw-bold">Значення оцінок по групах критеріїв</p>
+            <p class="text-primary m-0 fw-bold">Отримані дані по стартапу згідно третього кроку</p>
           </div>
         </div>
         <div class="row">
@@ -143,11 +143,11 @@
               <table id="ipi-table" class="table table-striped table tablesorter">
                 <thead class="thead-dark">
                 <tr>
-                  <th class="text-center">Групи критеріїв</th>
-                  <th class="text-center">Отримана оцінка</th>
+                  <th class="text-center">X</th>
+                  <th class="text-center">Z</th>
                 </tr>
                 </thead>
-                <tbody class="text-center" id="third_level_results"></tbody>
+                <tbody class="text-center" id="third_level_risk_results"></tbody>
               </table>
             </div>
           </div>
@@ -155,16 +155,27 @@
       </div>
     </div>
   </div>
-  <div class="pt-3 pb-5" id="final_level">
+  <div class="pt-3">
     <div class="container-fluid">
       <div class="card">
         <div class="card-header py-3">
           <div class="text-start" style="margin: 0px;padding: 5px 15px;">
-            <p class="text-primary m-0 fw-bold">Агрегована та лінгвістична оцінка</p>
+            <p class="text-primary m-0 fw-bold">Агрегована оцінка ризику по всіх групах критеріїв</p>
           </div>
         </div>
-        <div class="row" id="final_level_results">
+        <h4 class="text-center" id="fourth_level_risk_results"></h4>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3 pb-5">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Рівень безпеки фінансування проєкту</p>
+          </div>
         </div>
+        <h5 id="final_level_risk_results" class="text-center"></h5>
       </div>
     </div>
   </div>

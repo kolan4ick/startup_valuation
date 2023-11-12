@@ -49,7 +49,7 @@ class RiskEvaluator < Evaluator
     end
 
     # Aggregate reliability assessment
-    # @return [Hash] aggregated assessment
+    # @return [Float] aggregated assessment
     def aggr_reliability_assessment
       count_of_desired_term = @linguistic.count(@aggregated_assessment)
 
@@ -57,15 +57,13 @@ class RiskEvaluator < Evaluator
 
       sum_of_desired_term = modified_authenticity.sum
 
-      {
-        aggregated_assessment => (1.0 / count_of_desired_term) * sum_of_desired_term
-      }
+      ((1.0 / count_of_desired_term) * sum_of_desired_term).to_f
     end
 
     # Estimate the term membership
     # @return [Hash] estimated membership
     def estimate_term_membership
-      agg_rel_assess = aggr_reliability_assessment.values.first || 0
+      agg_rel_assess = aggr_reliability_assessment
 
       a = RISK_PERCENTAGE_LEVELS[aggregated_assessment][0]
       b = RISK_PERCENTAGE_LEVELS[aggregated_assessment][1]
@@ -103,7 +101,7 @@ class RiskEvaluator < Evaluator
 
     # Second step
     aggr_reliability_assessment = terms.map do | el |
-      el.aggr_reliability_assessment
+      { k: el, aggr_reliability_assessment: el.aggr_reliability_assessment }
     end
 
     # Third step

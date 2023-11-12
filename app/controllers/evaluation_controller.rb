@@ -78,6 +78,12 @@ class EvaluationController < ApplicationController
 
     @result = RiskEvaluator.new(k1: k1, k2: k2, k3: k3, k4: k4).evaluate
 
+    @res_term_estimate = @result[:res_term_estimate]
+    @aggr_reliability_assessment = @result[:aggr_reliability_assessment]
+    @estimated_membership = @result[:estimated_membership]
+    @aggregated_membership = @result[:aggregated_membership]
+    @security_level = @result[:security_level]
+
     respond_to do | format |
       format.js
     end
