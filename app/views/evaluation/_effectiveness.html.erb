@@ -14,12 +14,12 @@
       <tbody>
       <% 5.times do | i | %>
         <tr>
-          <td><%= text_field_tag "evaluation[g][]", @data_1[0][i], class: "form-control", type: :number %></td>
-          <td><%= text_field_tag "evaluation[a][]", @data_1[1][i], class: "form-control", type: :number %></td>
-          <td><%= text_field_tag "evaluation[b][]", @data_1[2][i], class: "form-control", type: :number %></td>
-          <td><%= text_field_tag "evaluation[t][]", @data_1[3][i], class: "form-control", type: :number %></td>
-          <td><%= text_field_tag "evaluation[u][]", @data_1[4][i], class: "form-control", type: :number %></td>
-          <td><%= text_field_tag "evaluation[p][]", @data_1[5][i], class: "form-control", type: :number %></td>
+          <td><%= text_field_tag "evaluation[g][]", @data_1[0][i], class: "form-control", type: :number, step: 0.1 %></td>
+          <td><%= text_field_tag "evaluation[a][]", @data_1[1][i], class: "form-control", type: :number, step: 0.1 %></td>
+          <td><%= text_field_tag "evaluation[b][]", @data_1[2][i], class: "form-control", type: :number, step: 0.1 %></td>
+          <td><%= text_field_tag "evaluation[t][]", @data_1[3][i], class: "form-control", type: :number, step: 0.1 %></td>
+          <td><%= text_field_tag "evaluation[u][]", @data_1[4][i], class: "form-control", type: :number, step: 0.1 %></td>
+          <td><%= text_field_tag "evaluation[p][]", @data_1[5][i], class: "form-control", type: :number, step: 0.1 %></td>
         </tr>
       <% end %>
       </tbody>
