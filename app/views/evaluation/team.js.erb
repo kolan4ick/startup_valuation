@@ -1,0 +1,39 @@
+document.getElementById("LoadingPage").style.display = "flex";
+
+setTimeout(function () {
+    document.getElementById("LoadingPage").style.display = "none";
+
+    document.getElementById("first_level_team_results").innerHTML = `
+          <% [@team_evaluator.k1, @team_evaluator.k2, @team_evaluator.k3].each.with_index do |k, index| %>
+                  <% k.linguistic.zip(k.confidence).each.with_index do |value, idx| %>
+                    <% linguistic, confidence = value %>
+                    <tr>
+                      <td>K<%= index + 1 %><%= idx + 1 %></td>
+                      <td><%= linguistic %></td>
+                      <td><%= confidence %></td>
+                    </tr>
+                  <% end %>
+          <% end %>
+    `;
+
+    document.getElementById("second_level_team_results").innerHTML = `
+    <% @membership.each.with_index do |mp, i| %>
+          <% mp.each.with_index do |m, idx| %>
+            <tr>
+                <td>K<%= i + 1 %><%= idx + 1 %></td>
+                <td><%= m.round(3) %></td>
+            </tr>
+          <% end %>
+    <% end %>
+    `;
+
+    document.getElementById("fourth_level_team_results").innerHTML = `
+      Z = <%= @defuzzification.round(4) %>
+    `;
+
+    document.getElementById("fifth_level_team_results").innerHTML = `
+      Рейтинг команди - <%= @rate %>
+    `;
+
+    document.querySelector("#team_results").style.display = "block";
+}, 3000);

@@ -1,0 +1,214 @@
+<%= form_with(url: team_evaluation_url, method: :get, local: false) do %>
+  <div class="table-responsive pt-3">
+    <div class="row">
+      <div class="col-4">
+        <div class="row pb-2">
+          <div class="col-9">
+            <h6 class="text-center">Стабільність та згуртованість команди</h6>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag "evaluation[k][1]", @data_3[0][0], class: 'form-control' %>
+          </div>
+        </div>
+        <% 2.times do | i | %>
+          <div class="row">
+            <div class="col-3">
+              <p>K1<%= i + 1 %></p>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k1][#{i}][]", @data_3[0][1][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k1][#{i}][]", @data_3[0][1][i][1], class: 'form-control', type: :number, step: 0.1 %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k1][#{i}][]", @data_3[0][1][i][2], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <div class="row pb-2">
+          <div class="col-9">
+            <h6 class="text-center">Професійні компетенції та досвід команди</h6>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag "evaluation[k][2]", @data_3[1][0], class: 'form-control' %>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-9">
+            <h6 class="text-center">Професійні компетенції лідерів</h6>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag "evaluation[k2][leaders]", @data_3[1][1][0], class: 'form-control' %>
+          </div>
+        </div>
+        <% (2...5).each do | i | %>
+          <div class="row">
+            <div class="col-3">
+              <p>K2<%= i - 1 %></p>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][1], class: 'form-control', type: :number, step: 0.1 %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][2], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+        <div class="row pb-2">
+          <div class="col-9">
+            <h6 class="text-center">Професійні компетенції команди</h6>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag "evaluation[k2][team]", @data_3[1][1][1], class: 'form-control' %>
+          </div>
+        </div>
+        <% (5...7).each do | i | %>
+          <div class="row">
+            <div class="col-3">
+              <p>K2<%= i - 1 %></p>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][1], class: 'form-control', type: :number, step: 0.1 %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k2][#{i - 2}][]", @data_3[1][1][i][2], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <div class="row pb-2">
+          <div class="col-9">
+            <h6 class="text-center">Стабільність та згуртованість команди</h6>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag "evaluation[k][3]", @data_3[2][0], class: 'form-control' %>
+          </div>
+        </div>
+        <% 4.times do | i | %>
+          <div class="row">
+            <div class="col-3">
+              <p>K1<%= i + 1 %></p>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k3][#{i}][]", @data_3[2][1][i][0], class: 'form-control' %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k3][#{i}][]", @data_3[2][1][i][1], class: 'form-control', type: :number, step: 0.1 %>
+            </div>
+            <div class="col-3">
+              <%= text_field_tag "evaluation[k3][#{i}][]", @data_3[2][1][i][2], class: 'form-control', type: :number %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto text-center mt-3">
+    <input class="btn btn-primary" style="width: 33%" type="submit" value="Оцінити команду">
+  </div>
+<% end %>
+<div id="team_results" class="pt-3" style="display: none">
+  <div>
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Перший крок</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table id="ipi-table" class="table table-striped table tablesorter">
+                <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">Назва критеріїв</th>
+                  <th class="text-center">L</th>
+                  <th class="text-center">d</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" id="first_level_team_results"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Другий крок</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table id="ipi-table" class="table table-striped table tablesorter">
+                <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">Назва критеріїв</th>
+                  <th class="text-center">х</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" id="second_level_team_results"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">Четвертий крок</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <div class="m-3" id="fourth_level_team_results">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="text-start" style="margin: 0px;padding: 5px 15px;">
+            <p class="text-primary m-0 fw-bold">П'ятий крок</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <div class="m-3" id="fifth_level_team_results">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

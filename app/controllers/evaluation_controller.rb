@@ -43,6 +43,18 @@ class EvaluationController < ApplicationController
         ["НС", 0.6],
       ]
     ]
+
+    @data_3 = [
+      [
+        10, [["В", 0.8, 8], ["С", 0.9, 9]]
+      ],
+      [
+        9, [10, 8, ["В", 0.7, 8], ["С", 0.8, 10], ["НС", 0.6, 9], ["С", 0.5, 10], ["С", 0.7, 7]]
+      ],
+      [
+        8, [["НС", 0.8, 8], ["В", 0.9, 6], ["В", 0.9, 7], ["С", 0.8, 9]]
+      ]
+    ]
   end
 
   def effectiveness
@@ -83,6 +95,24 @@ class EvaluationController < ApplicationController
     @estimated_membership = @result[:estimated_membership]
     @aggregated_membership = @result[:aggregated_membership]
     @security_level = @result[:security_level]
+
+    respond_to do | format |
+      format.js
+    end
+  end
+
+  def team
+    # Data from the form
+    k1 = [params[:evaluation][:k]["1"], params[:evaluation][:k1].to_unsafe_h]
+    k2 = [params[:evaluation][:k]["2"], params[:evaluation][:k2].to_unsafe_h]
+    k3 = [params[:evaluation][:k]["3"], params[:evaluation][:k3].to_unsafe_h]
+
+    @team_evaluator = TeamEvaluator.new(k1: k1, k2: k2, k3: k3)
+    @result = @team_evaluator.evaluate
+
+    @membership = @result[:membership]
+    @defuzzification = @result[:defuzzification]
+    @rate = @result[:rate]
 
     respond_to do | format |
       format.js
