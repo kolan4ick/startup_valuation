@@ -1,9 +1,11 @@
 module EvaluationHelper
-  def multicriteria_input(position, collection)
+  def multicriteria_input(position, collection, value=nil)
     if collection.nil?
-      text_field_tag "evaluation[x#{position}][]", "", class: "form-control", type: :text
+      text_field_tag "evaluation[x#{position}][]", value, class: "form-control", type: :text
     else
-      select_tag "evaluation[x#{position}][]", options_for_select(collection.each_with_index.map { |e, idx| [e, idx] }), class: "form-control"
+      value = collection.index(value) if value
+
+      select_tag "evaluation[x#{position}][]", options_for_select(collection.each_with_index.map { |e, idx| [e, idx] }, value), value: value, class: "form-control"
     end
   end
 end

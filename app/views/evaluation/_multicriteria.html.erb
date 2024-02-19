@@ -15,7 +15,7 @@
 				<tr>
 					<td><strong>K <%= i + 1 %></strong></td> <!-- Header for each row -->
 					<% 4.times do | j | %>
-						<td><%= multicriteria_input(j, @inputs[i]) %></td>
+						<td><%= multicriteria_input(j, @inputs[i], @data_1[i][j]) %></td>
 					<% end %>
 				</tr>
 			<% end %>
