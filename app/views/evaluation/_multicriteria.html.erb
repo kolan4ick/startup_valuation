@@ -1,8 +1,9 @@
-<%= form_with(url: effectiveness_evaluation_url, method: :get, local: false) do %>
+<%= form_with(url: multicriteria_evaluation_path, method: :get, local: false) do %>
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
-			<tr class="al">
+			<tr>
+				<th></th> <!-- Empty cell in the top-left corner -->
 				<th>x1</th>
 				<th>x2</th>
 				<th>x3</th>
@@ -12,6 +13,7 @@
 			<tbody>
 			<% 9.times do | i | %>
 				<tr>
+					<td><strong>K <%= i + 1 %></strong></td> <!-- Header for each row -->
 					<% 4.times do | j | %>
 						<td><%= multicriteria_input(j, @inputs[i]) %></td>
 					<% end %>
@@ -20,10 +22,30 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="row mb-3">
+		<div class="col-6">
+			<div class="text-center">
+				<label for="evaluation[convolution]">
+					Згортка
+				</label>
+				<%= select_tag "evaluation[convolution]", options_for_select([["песимістична", 0], ["обережна", 1], ["середня", 2], ["оптимістична", 3],]), class: "form-control" %>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="text-center">
+				<label for="evaluation[method]">
+					Підхід
+				</label>
+				<%= select_tag "evaluation[method]", options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control" %>
+			</div>
+		</div>
+	</div>
+
 	<div class="mx-auto text-center">
 		<input class="btn btn-primary" style="width: 33%" type="submit" value="Оцінити ефективність"/>
 	</div>
 <% end %>
+
 <div id="effectiveness_results" class="pt-3" style="display: none">
 	<div>
 		<div class="container-fluid">
