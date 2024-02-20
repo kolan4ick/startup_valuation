@@ -15,10 +15,28 @@
 				<tr>
 					<td><strong>K <%= i + 1 %></strong></td> <!-- Header for each row -->
 					<% 4.times do | j | %>
-						<td><%= multicriteria_input(j, @inputs[i], @data_1[i][j]) %></td>
+						<td><%= multicriteria_input(j, @inputs[i], @data_1_k[i][j]) %></td>
 					<% end %>
 				</tr>
 			<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+			<tr>
+				<% 9.times.each do | i | %>
+					<th><strong>P <%= i + 1 %></strong></th>
+				<% end %>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<% 9.times do | i | %>
+					<td><%= text_field_tag "evaluation[p][]", @data_1_p[i], class: "form-control", type: :text %></td>
+				<% end %>
+			</tr>
 			</tbody>
 		</table>
 	</div>
