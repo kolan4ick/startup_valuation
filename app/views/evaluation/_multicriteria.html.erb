@@ -8,15 +8,17 @@
 				<th>x2</th>
 				<th>x3</th>
 				<th>x4</th>
+				<th class="multicriteria-hideable-th" hidden="hidden">T</th>
 			</tr>
 			</thead>
 			<tbody>
 			<% 9.times do | i | %>
 				<tr>
-					<td><strong>K <%= i + 1 %></strong></td> <!-- Header for each row -->
+					<td class="first-column"><strong>K <%= i + 1 %></strong></td> <!-- Header for each row -->
 					<% 4.times do | j | %>
 						<td><%= multicriteria_input(j, @inputs[i], @data_1_k[i][j]) %></td>
 					<% end %>
+					<td class="multicriteria-hideable-td" hidden="hidden"><%= multicriteria_input(i, @inputs[i], @data_1_t[i]) %></td>
 				</tr>
 			<% end %>
 			</tbody>
@@ -54,7 +56,7 @@
 				<label for="evaluation[method]">
 					Підхід
 				</label>
-				<%= select_tag "evaluation[method]", options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control" %>
+				<%= select_tag "evaluation[method]", options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control", onchange: "changeMethod(this);" %>
 			</div>
 		</div>
 	</div>
