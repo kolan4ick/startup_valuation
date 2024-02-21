@@ -46,6 +46,18 @@ class EvaluationController < ApplicationController
     @method = params[:evaluation][:method].to_i
     @convolution = params[:evaluation][:convolution].to_i
 
-    @result = MulticriteriaEvaluator.new(@p, @k, @method, @convolution, @t).evaluate
+    result = MulticriteriaEvaluator.new(@p, @k, @method, @convolution, @t).evaluate
+
+    @alpha = result[:alpha]
+    @normalized_xs = result[:normalized_xs]
+    @convolution_result = result[:convolution_result]
+    @best_choice = {
+      title: "x#{result[:convolution_result].index(result[:convolution_result].max) + 1}",
+      value: result[:convolution_result].max
+    }
+
+    respond_to do | format |
+      format.js
+    end
   end
 end

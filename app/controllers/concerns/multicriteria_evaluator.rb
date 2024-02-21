@@ -21,17 +21,17 @@ class MulticriteriaEvaluator < Evaluator
       @normalized_xs = xs_normalize_2
     end
 
-      @convolution_result = case @convolution
-                            when 0 then pessimistic_convolution(@alpha, @normalized_xs.transpose)
-                            when 1 then careful_convolution(@alpha, @normalized_xs.transpose)
-                            when 2 then medium_convolution(@alpha, @normalized_xs.transpose)
-                            when 3 then optimistic_convolution(@alpha, @normalized_xs.transpose)
-                            else
-                              # type code here
-                              raise "Invalid convolution method"
-                            end
+    @convolution_result = case @convolution
+                          when 0 then pessimistic_convolution(@alpha, @normalized_xs.transpose)
+                          when 1 then careful_convolution(@alpha, @normalized_xs.transpose)
+                          when 2 then medium_convolution(@alpha, @normalized_xs.transpose)
+                          when 3 then optimistic_convolution(@alpha, @normalized_xs.transpose)
+                          else
+                            # type code here
+                            raise "Invalid convolution method"
+                          end
 
-    1 + 1
+    { alpha: @alpha, normalized_xs: @normalized_xs, convolution_result: @convolution_result }
   end
 
   private

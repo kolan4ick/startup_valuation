@@ -1,0 +1,7 @@
+document.getElementById("LoadingPage").style.display = "flex";
+
+setTimeout(function () {
+    document.getElementById("LoadingPage").style.display = "none";
+
+    document.getElementById("multicriteria_results").innerHTML = `<%= j render "multicriteria_results" %>`;
+}, 1000);

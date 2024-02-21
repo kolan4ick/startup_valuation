@@ -40,4 +40,6 @@ html, body {
 
 .table .first-column {
   width: 15%; /* Adjust the width as needed */
+  /*Align items in the center without flex*/
+  text-align: center;
 }
