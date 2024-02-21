@@ -32,13 +32,15 @@ class EvaluationController < ApplicationController
   def multicriteria
     @p = params[:evaluation][:p].map(&:to_i)
 
-    @xs = 4.times.map do | i |
-      params[:evaluation]["x#{i + 1}".to_sym].map(&:to_i)
+    @t = params[:evaluation][:t].map(&:to_i)
+
+    @k = 9.times.map do | i |
+      params[:evaluation]["k#{i + 1}".to_sym].map(&:to_i)
     end
 
     @method = params[:evaluation][:method].to_i
     @convolution = params[:evaluation][:convolution].to_i
 
-    @result = MulticriteriaEvaluator.new(@p, @xs, @method, @convolution).evaluate
+    @result = MulticriteriaEvaluator.new(@p, @k, @method, @convolution, @t).evaluate
   end
 end
