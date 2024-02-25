@@ -12,14 +12,11 @@ class MulticriteriaEvaluator < Evaluator
   def evaluate
     if @method == 0
       @normalized_xs = xs_normalize_1
-
-      @alpha = p_normalize
-
     else
-      @alpha = p_normalize
-
       @normalized_xs = xs_normalize_2
     end
+
+    @alpha = p_normalize
 
     @convolution_result = case @convolution
                           when 0 then pessimistic_convolution(@alpha, @normalized_xs.transpose)
