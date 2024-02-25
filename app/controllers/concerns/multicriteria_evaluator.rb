@@ -27,7 +27,6 @@ class MulticriteriaEvaluator < Evaluator
                           when 2 then medium_convolution(@alpha, @normalized_xs.transpose)
                           when 3 then optimistic_convolution(@alpha, @normalized_xs.transpose)
                           else
-                            # type code here
                             raise "Invalid convolution method"
                           end
 
@@ -40,7 +39,7 @@ class MulticriteriaEvaluator < Evaluator
     @xs.map.with_index do | x, idx |
       max_val = MAXIMUMS[idx] || x.max
 
-      x.map { | value | value.to_f / max_val.to_f }
+      x.map { | value | value.to_f / max_val.to_f == 0 ? 0.01 : value.to_f / max_val.to_f }
     end
   end
 
@@ -49,7 +48,12 @@ class MulticriteriaEvaluator < Evaluator
       max_val = MAXIMUMS[idx] || x.max
       min_val = x.min
 
-      x.map { | value | 1 - ((@t[idx] - value).abs.to_f / [@t[idx] - min_val, max_val - @t[idx]].max) }
+      # if the value is 0, we need to add a small value to avoid division by 0 and multiplication by 0
+      x.map do | value |
+        res = 1 - ((@t[idx] - value).abs.to_f / [@t[idx] - min_val, max_val - @t[idx]].max)
+
+        res == 0 ? 0.01 : res
+      end
     end
   end
 
