@@ -4,17 +4,18 @@
 			<thead>
 			<tr>
 				<th></th> <!-- Empty cell in the top-left corner -->
-				<th>x1</th>
-				<th>x2</th>
-				<th>x3</th>
-				<th>x4</th>
-				<th class="multicriteria-hideable-th" hidden="hidden">T</th>
+				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 1">x1</th>
+				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 2">x2</th>
+				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 3">x3</th>
+				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 4">x4</th>
+				<th class="text-center multicriteria-hideable-th" hidden="hidden" data-bs-toggle="tooltip" title='Точка "задоволення вимог"'>T</th>
 			</tr>
 			</thead>
 			<tbody>
 			<% 9.times do | i | %>
 				<tr>
-					<td class="first-column"><strong>K <%= i + 1 %> (<%= @data_1_descriptions[i] %>)</strong>
+					<td class="first-column" data-bs-toggle="tooltip" title="<%= @hints[0][i] %>">
+						<strong>K <%= i + 1 %> (<%= @data_1_descriptions[i] %>)</strong>
 					</td> <!-- Header for each row -->
 					<% 4.times do | j | %>
 						<td><%= multicriteria_input("k#{i + 1}", @inputs[i], @data_1_k[i][j]) %></td>
@@ -30,7 +31,7 @@
 			<thead>
 			<tr>
 				<% 9.times.each do | i | %>
-					<th><strong>P <%= i + 1 %></strong></th>
+					<th data-bs-toggle="tooltip" title="Вагомість критерію <%= i + 1 %>"><strong>P <%= i + 1 %></strong></th>
 				<% end %>
 			</tr>
 			</thead>
@@ -49,7 +50,10 @@
 				<label for="evaluation[convolution]">
 					Згортка
 				</label>
-				<%= select_tag "evaluation[convolution]", options_for_select([["песимістична", 0], ["обережна", 1], ["середня", 2], ["оптимістична", 3],]), class: "form-control" %>
+				<%= select_tag "evaluation[convolution]",
+				               options_for_select([["песимістична", 0], ["обережна", 1], ["середня", 2], ["оптимістична", 3],]),
+				               class: "form-control", "data-bs-toggle": "tooltip",
+				               title: "Вибір згортки, за якою будуть виконуватись обрахунки" %>
 			</div>
 		</div>
 		<div class="col-6">
@@ -57,7 +61,10 @@
 				<label for="evaluation[method]">
 					Підхід
 				</label>
-				<%= select_tag "evaluation[method]", options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control", onchange: "changeMethod(this);" %>
+				<%= select_tag "evaluation[method]",
+				               options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control",
+				               onchange: "changeMethod(this);", "data-bs-toggle": "tooltip",
+				               title: "Вибір підходу, за яким будуть проводитись обрахунки" %>
 			</div>
 		</div>
 	</div>
