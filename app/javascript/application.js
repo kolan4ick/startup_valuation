@@ -25,20 +25,20 @@ function handleThemeSwitching(theme) {
     localStorage.setItem('data-bs-theme', theme);
 }
 
-function changeMethod(element) {
+function changeMethod(element, type) {
     let method = element.value;
 
-    const multicriteriaHideableTh = document.getElementsByClassName("multicriteria-hideable-th")[0];
-    const multicriteriaHideableTd = document.getElementsByClassName("multicriteria-hideable-td");
+    const hideableTh = document.getElementsByClassName(`${type}-hideable-th`)[0];
+    const hideableTd = document.getElementsByClassName(`${type}-hideable-td`);
     if (method === "0") {
-        multicriteriaHideableTh.hidden = true;
-        for (let i = 0; i < multicriteriaHideableTd.length; i++) {
-            multicriteriaHideableTd[i].hidden = true;
+        hideableTh.hidden = true;
+        for (let i = 0; i < hideableTd.length; i++) {
+            hideableTd[i].hidden = true;
         }
     } else {
-        multicriteriaHideableTh.hidden = false;
-        for (let i = 0; i < multicriteriaHideableTd.length; i++) {
-            multicriteriaHideableTd[i].hidden = false;
+        hideableTh.hidden = false;
+        for (let i = 0; i < hideableTd.length; i++) {
+            hideableTd[i].hidden = false;
         }
     }
 }

@@ -1,5 +1,5 @@
-<%= form_with(url: multicriteria_evaluation_path, method: :get, local: false) do %>
-	<%= render "multicriteria_instructions" %>
+<%= form_with(url: wsm_evaluation_path, method: :get, local: false) do %>
+	<%= render "wsm_instructions" %>
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
@@ -9,7 +9,7 @@
 				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 2">x2</th>
 				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 3">x3</th>
 				<th class="text-center" data-bs-toggle="tooltip" title="Альтернатива 4">x4</th>
-				<th class="text-center multicriteria-hideable-th" hidden="hidden" data-bs-toggle="tooltip" title='Точка "задоволення вимог"'>T</th>
+				<th class="text-center wsm-hideable-th" hidden="hidden" data-bs-toggle="tooltip" title='Точка "задоволення вимог"'>T</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -21,7 +21,7 @@
 					<% 4.times do | j | %>
 						<td><%= multicriteria_input("k#{i + 1}", @inputs[i], @data_1_k[i][j]) %></td>
 					<% end %>
-					<td class="multicriteria-hideable-td" hidden="hidden"><%= multicriteria_input("t", @inputs[i], @data_1_t[i]) %></td>
+					<td class="wsm-hideable-td" hidden="hidden"><%= multicriteria_input("t", @inputs[i], @data_1_t[i]) %></td>
 				</tr>
 			<% end %>
 			</tbody>
@@ -46,25 +46,14 @@
 		</table>
 	</div>
 	<div class="row mb-3">
-		<div class="col-6">
-			<div class="text-center">
-				<label for="evaluation[convolution]">
-					Згортка
-				</label>
-				<%= select_tag "evaluation[convolution]",
-				               options_for_select([["песимістична", 0], ["обережна", 1], ["середня", 2], ["оптимістична", 3],]),
-				               class: "form-control", "data-bs-toggle": "tooltip",
-				               title: "Вибір згортки, за якою будуть виконуватись обрахунки" %>
-			</div>
-		</div>
-		<div class="col-6">
+		<div class="col-12">
 			<div class="text-center">
 				<label for="evaluation[method]">
 					Підхід
 				</label>
 				<%= select_tag "evaluation[method]",
 				               options_for_select([["Перший", 0], ["Другий", 1]]), class: "form-control",
-				               onchange: "changeMethod(this, 'multicriteria');", "data-bs-toggle": "tooltip",
+				               onchange: "changeMethod(this, 'wsm');", "data-bs-toggle": "tooltip",
 				               title: "Вибір підходу, за яким будуть проводитись обрахунки" %>
 			</div>
 		</div>
@@ -75,5 +64,5 @@
 	</div>
 <% end %>
 
-<div id="multicriteria_results" class="py-3">
+<div id="wsm_results" class="py-3">
 </div>

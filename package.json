@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --minify --sourcemap --outdir=app/assets/builds",
-    "watch": "node esbuild-auto-reload.config.js  "
+    "start": "node esbuild-auto-reload.config.js  "
   },
   "devDependencies": {
     "chokidar": "^3.5.3"

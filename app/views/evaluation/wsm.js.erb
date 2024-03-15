@@ -1,0 +1,7 @@
+document.getElementById("LoadingPage").style.display = "flex";
+
+setTimeout(function () {
+    document.getElementById("LoadingPage").style.display = "none";
+
+    document.getElementById("wsm_results").innerHTML = `<%= j render "wsm_results" %>`;
+}, 1000);

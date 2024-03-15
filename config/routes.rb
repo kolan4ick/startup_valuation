@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resource :evaluation, only: [] do
     get :multicriteria, to: "evaluation#multicriteria"
+    get :wsm, to: "evaluation#wsm"
   end
 end

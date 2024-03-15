@@ -68,4 +68,30 @@ class EvaluationController < ApplicationController
       format.js
     end
   end
+
+  def wsm
+    @p = params[:evaluation][:p].map(&:to_i)
+
+    @t = params[:evaluation][:t].map(&:to_i)
+
+    @k = 9.times.map do | i |
+      params[:evaluation]["k#{i + 1}".to_sym].map(&:to_i)
+    end
+
+    @method = params[:evaluation][:method].to_i
+
+    result = WsmEvaluator.new(@p, @k, @method, @t).evaluate
+
+    @alpha = result[:alpha]
+    @normalized_xs = result[:normalized_xs]
+    @result = result[:result]
+    @best_choice = {
+      title: "x#{@result.index(@result.max) + 1}",
+      value: @result.max
+    }
+
+    respond_to do | format |
+      format.js
+    end
+  end
 end

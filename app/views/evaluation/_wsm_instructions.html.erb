@@ -1,0 +1,58 @@
+<!-- Button trigger modal -->
+<div class="text-end">
+	<button type="button" class="btn btn-link align-content-center" data-bs-toggle="modal" data-bs-target="#wsm-instructions">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+			<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+		</svg>
+	</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="wsm-instructions" tabindex="-1" aria-labelledby="wsm-instructions-label" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title px-3" id="wsm-instructions-label">Інструкція для користувача</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body p-4">
+				<h3>1. Введіть дані</h3>
+
+				<ul>
+					<li><b>Оцінки.</b> Для кожної альтернативи та критерію введіть відповідну оцінку. Оцінки можуть бути числові
+						або текстові (наприклад, "позитивні", "негативні").
+					</li>
+					<li><b>Ваги критеріїв.</b> Ви можете задати різну вагу для кожного критерію. Ваги повинні бути
+						числами від 0 до 10.
+					</li>
+					<li>
+						<b>Точка "задоволення вимог".</b> Ви можете задати точку "задоволення вимог" для кожного критерію.
+						Цей тип даних доступний для вводу в разі вибору другого методу оцінювання.
+					</li>
+				</ul>
+
+				<h3>2. Виберіть метод</h3>
+
+				<ul>
+					<li><b>Перший метод</b></li>
+					<li><b>Другий метод</b></li>
+				</ul>
+
+				<h3>3. Натисніть кнопку "Отримати результат"</h3>
+
+				<ul>
+					Програма розрахує результат та покаже всі кроки розрахунку:
+					<li><b>Нормування вхідних даних на 1 етапі</b></li>
+					<li><b>Обчислення нормованих вагових коефіцієнтів</b></li>
+					<li><b>Обчислення Weighted Sum Model (WSM)</b></li>
+					<li><b>Кращий вибір за результатом обчислення</b></li>
+				</ul>
+
+				<h3>Бажаю успіхів!</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
